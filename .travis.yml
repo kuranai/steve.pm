@@ -1,0 +1,18 @@
+# source from: https://eiken.dev/blog/2020/03/how-to-deploy-your-hugo-site-with-travis-ci/
+os: linux
+language: minimal
+addons:
+  snaps:
+    - name: hugo
+      channel: extended
+script:
+- hugo
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: "$GITHUB_TOKEN"
+  keep_history: false
+  target_branch: gh-pages
+  local_dir: public
+  on:
+    branch: master
